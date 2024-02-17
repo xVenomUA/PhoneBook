@@ -1,0 +1,11 @@
+.search {
+  width: 250px;
+  display: block;
+  margin: 40px auto 0 auto;
+}
+.input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 20px;
+  background-color: aliceblue;
+}

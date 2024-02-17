@@ -1,0 +1,42 @@
+.form{ 
+    width: 350px;
+    border: 2px solid black;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: aliceblue;
+}
+.field{
+     display: flex;
+     flex-direction: column;
+    
+}
+.fieldInput{ 
+     padding: 10px;
+     border-radius: 20px;
+     background-color: transparent;
+     margin-bottom: 4px
+}
+.error{
+    color: red;
+}
+.divName{ 
+    display: flex; 
+    flex-direction: column;
+}
+.divNumber{ 
+    composes: divName;
+}
+.field{ 
+    margin-bottom: 10px;
+}
+.btn{ 
+    padding: 10px;
+    border-radius: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 450ms;
+}
+.btn:is(:hover, :focus){
+     background-color: rgb(192, 236, 126);
+}
