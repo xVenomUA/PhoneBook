@@ -8,9 +8,9 @@ const setAuthHeader = (token) => {
 };
 
 // Utility to remove JWT
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = "";
-// };
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = "";
+};
 
 export const register = createAsyncThunk(
   "auth/register",
@@ -21,6 +21,18 @@ export const register = createAsyncThunk(
         dataRegister
       );
       setAuthHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const login = createAsyncThunk(
+  "auth/login",
+  async (dataLogIn, thunkAPI) => {
+    try {
+      const response = await axios.post(`${BASE_URL}users/login`, dataLogIn);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
