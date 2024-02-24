@@ -1,0 +1,10 @@
+.active {
+  color: brown;
+  
+}
+.link {
+  font-size: 20px;
+  &:hover {
+    color: brown;
+  }
+}
