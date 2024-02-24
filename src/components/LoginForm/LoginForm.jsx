@@ -2,55 +2,40 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 
 import { useId } from "react";
 
-import css from "./RegisterForm.module.css";
+import css from "./LoginForm.module.css";
 
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operation";
 const initialValues = {
-  name: "",
   email: "",
   password: "",
 };
 
 const CheckShema = Yup.object().shape({
-  name: Yup.string()
-    .min(5, "Too short")
-    .max(50, "Too long")
-    .required("Required name"),
   email: Yup.string().email("Pls valid email").required("Required email"),
   password: Yup.string().min(6, "Too short").max(50, "Too long"),
 });
 
-export const RegisterForm = () => {
-  const idName = useId();
+export const LogInForm = () => {
   const idEmail = useId();
   const idPassword = useId();
 
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-     dispatch(register(values));
     actions.resetForm();
   };
 
   return (
     <>
-      <h2 className={css.title}>Create account</h2>
+      <h2 className={css.title}>Log in</h2>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={CheckShema}
       >
         <Form className={css.form}>
-          <div className={css.field}>
-            <label htmlFor={idName} className={css.label}>
-              Name
-            </label>
-            <Field type="text" name="name" id={idName} className={css.input} />
-            <ErrorMessage name="name" component="span" className={css.error} />
-          </div>
-
           <div className={css.field}>
             <label htmlFor={idEmail} className={css.label}>
               Email
@@ -81,7 +66,7 @@ export const RegisterForm = () => {
             />
           </div>
           <button type="submit" className={css.btn}>
-            Sign up
+            Log in
           </button>
         </Form>
       </Formik>

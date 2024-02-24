@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAddContact, fetchContacts, fetchDeleteContact } from "./operations";
+import {
+  fetchAddContact,
+  fetchContacts,
+  fetchDeleteContact,
+} from "./operations";
 
 export const handlePending = (state) => {
   state.isLoading = true;
@@ -47,5 +51,4 @@ const numberSlice = createSlice({
   },
 });
 
-export const { deleteNumber, addNumber } = numberSlice.actions;
 export const numberReducer = numberSlice.reducer;

@@ -14,6 +14,7 @@ import {
 } from "redux-persist";
 import { numberReducer } from "./numberSlice";
 import { filterReducer } from "./filterSlice";
+import { authReducer } from "./auth/slice";
 
 const persistConfig = {
   key: "root",
@@ -24,6 +25,7 @@ const persistConfig = {
 const rootReducer = combineSlices({
   filter: filterReducer,
   numbers: numberReducer,
+  auth: authReducer, 
 });
 
 const persistedTAskReducer = persistReducer(persistConfig, rootReducer);
