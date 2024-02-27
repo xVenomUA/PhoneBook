@@ -6,7 +6,7 @@ import css from "./LoginForm.module.css";
 
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/operation";
+import { login } from "../../redux/auth/operation";
 const initialValues = {
   email: "",
   password: "",
@@ -24,6 +24,7 @@ export const LogInForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
+    dispatch(login(values))
     actions.resetForm();
   };
 

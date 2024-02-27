@@ -7,8 +7,8 @@ import * as Yup from "yup";
 
 import { useId } from "react";
 import { useDispatch } from "react-redux";
+import { addContacts } from "../../redux/contact/operation";
 
-import { fetchAddContact } from "../../redux/operations";
 
 
 const FeedbackSchema = Yup.object().shape({
@@ -39,10 +39,8 @@ export const ConctactForm = () => {
       name: values.name,
       number: values.number,
     };
-
-    dispatch(fetchAddContact(newContact));
+    dispatch(addContacts(newContact)); 
     actions.resetForm();
-
   };
   return (
     <Formik
