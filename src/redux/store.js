@@ -15,6 +15,7 @@ import {
 
 import { authReducer } from "./auth/slice";
 import { contactReducer } from "./contact/slice";
+import { filterReducer } from "./contact/filter";
 
 const persistConfig = {
   key: "auth",
@@ -25,6 +26,7 @@ const persistConfig = {
 const rootReducer = combineSlices({
   auth: persistReducer(persistConfig, authReducer),
   contact: contactReducer,
+  filter: filterReducer,
 });
 
 export const store = configureStore({

@@ -3,16 +3,10 @@ import { useSelector } from "react-redux";
 import { Contact } from "../Contact/Contact";
 
 import css from "./ContactList.module.css";
-import { selectDataContacts } from "../../redux/contact/selector";
+import { filtData } from "../../redux/contact/selector";
 
 export const ContactList = () => {
-  const dataContact = useSelector(selectDataContacts);
-  // const filtQuery = useSelector(getFilter);
-  // const filtData = dataContact.filter((data) => {
-  //   return data.name.toLowerCase().includes(filtQuery.toLowerCase());
-  // }
-  // );
-
+  const dataContact = useSelector(filtData); 
   return (
     <ul className={css.list}>
       {dataContact.length > 0  ? (
