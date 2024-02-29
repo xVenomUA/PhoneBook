@@ -7,7 +7,8 @@ import { Suspense } from "react";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
 import { refreshUser } from "../redux/auth/operation";
-import { getContacts } from "../redux/contact/operation";
+import { selectIsRefreshing } from "../redux/auth/selector";
+import { selectIsLoading } from "../redux/contact/selector";
 
 const HomePage = lazy(() => import("../pages/Home/Home"));
 const RegisterPage = lazy(() => import("../pages/Register/Register"));
@@ -18,41 +19,48 @@ export const App = () => {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
-  const isLoading = false;
+  const isRefreshed = useSelector(selectIsRefreshing);
+  const isLoading = useSelector(selectIsLoading);
+  console.log("====================================");
+  console.log(isLoading);
+  console.log("====================================");
   return (
     <>
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<Layuot />}>
-            <Route index element={<HomePage />} />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute
-                  redirectTo="/tasks"
-                  component={<LoginPage />}
-                />
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute
-                  redirectTo="/tasks"
-                  component={<RegisterPage />}
-                />
-              }
-            />
-            <Route
-              path="/tasks"
-              element={
-                <PrivateRoute redirectTo="/login" component={<TasksPage />} />
-              }
-            />
-          </Route>
-        </Routes>
-      </Suspense>
+      {isRefreshed ? (
+        <Loader />
+      ) : (
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Layuot />}>
+              <Route index element={<HomePage />} />
+              <Route
+                path="/login"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/tasks"
+                    component={<LoginPage />}
+                  />
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <RestrictedRoute
+                    redirectTo="/tasks"
+                    component={<RegisterPage />}
+                  />
+                }
+              />
+              <Route
+                path="/tasks"
+                element={
+                  <PrivateRoute redirectTo="/login" component={<TasksPage />} />
+                }
+              />
+            </Route>
+          </Routes>
+        </Suspense>
+      )}
       {isLoading && <Loader />}
     </>
   );
