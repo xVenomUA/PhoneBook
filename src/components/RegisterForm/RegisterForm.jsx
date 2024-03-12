@@ -15,11 +15,11 @@ const initialValues = {
 
 const CheckShema = Yup.object().shape({
   name: Yup.string()
-    .min(5, "Too short")
+    .min(3, "Too short")
     .max(50, "Too long")
     .required("Required name"),
   email: Yup.string().email("Pls valid email").required("Required email"),
-  password: Yup.string().min(6, "Too short").max(50, "Too long"),
+  password: Yup.string().min(8, "Too short").max(50, "Too long"),
 });
 
 export const RegisterForm = () => {
@@ -30,7 +30,7 @@ export const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-     dispatch(register(values));
+    dispatch(register(values));
     actions.resetForm();
   };
 
@@ -47,7 +47,13 @@ export const RegisterForm = () => {
             <label htmlFor={idName} className={css.label}>
               Name
             </label>
-            <Field type="text" name="name" id={idName} className={css.input} />
+            <Field
+              type="text"
+              name="name"
+              id={idName}
+              className={css.input}
+              placeholder="Enter name"
+            />
             <ErrorMessage name="name" component="span" className={css.error} />
           </div>
 
@@ -60,6 +66,7 @@ export const RegisterForm = () => {
               name="email"
               id={idEmail}
               className={css.input}
+              placeholder="example@gmail.com"
             />
             <ErrorMessage name="email" component="span" className={css.error} />
           </div>
@@ -73,6 +80,7 @@ export const RegisterForm = () => {
               name="password"
               id={idPassword}
               className={css.input}
+              placeholder="Enter password"
             />
             <ErrorMessage
               name="password"

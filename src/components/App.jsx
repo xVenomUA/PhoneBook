@@ -13,7 +13,7 @@ import { selectIsLoading } from "../redux/contact/selector";
 const HomePage = lazy(() => import("../pages/Home/Home"));
 const RegisterPage = lazy(() => import("../pages/Register/Register"));
 const LoginPage = lazy(() => import("../pages/Login/Login"));
-const TasksPage = lazy(() => import("../pages/Tasks/Tasks"));
+const TasksPage = lazy(() => import("../pages/Contact/Contact"));
 export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,7 +34,7 @@ export const App = () => {
                 path="/login"
                 element={
                   <RestrictedRoute
-                    redirectTo="/tasks"
+                    redirectTo="/contacts"
                     component={<LoginPage />}
                   />
                 }
@@ -43,17 +43,18 @@ export const App = () => {
                 path="/register"
                 element={
                   <RestrictedRoute
-                    redirectTo="/tasks"
+                    redirectTo="/contacts"
                     component={<RegisterPage />}
                   />
                 }
               />
               <Route
-                path="/tasks"
+                path="/contacts"
                 element={
                   <PrivateRoute redirectTo="/login" component={<TasksPage />} />
                 }
               />
+              <Route path="*" element={<HomePage />} />
             </Route>
           </Routes>
         </Suspense>

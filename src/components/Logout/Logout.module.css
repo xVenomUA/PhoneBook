@@ -12,3 +12,11 @@
     opacity: 1;
   }
 }
+.text {
+  text-align: center;
+  font-size: 20px;
+}
+.div {
+  display: flex;
+  gap: 20px;
+}

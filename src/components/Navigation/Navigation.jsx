@@ -12,13 +12,12 @@ export const Navigation = () => {
   const isLoggin = useSelector(selectIsLoggedIn);
   return (
     <nav className={css.nav}>
-      {!isLoggin && (
-        <NavLink to="/" className={isActive}>
-          Home
-        </NavLink>
-      )}
+      <NavLink to="/" className={isActive}>
+        Home
+      </NavLink>
+      
       {isLoggin && (
-        <NavLink to="/tasks" className={isActive}>
+        <NavLink to="/contacts" className={isActive}>
           Contacts
         </NavLink>
       )}

@@ -24,7 +24,7 @@ export const LogInForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(login(values))
+    dispatch(login(values));
     actions.resetForm();
   };
 
@@ -46,6 +46,7 @@ export const LogInForm = () => {
               name="email"
               id={idEmail}
               className={css.input}
+              placeholder="Enter email"
             />
             <ErrorMessage name="email" component="span" className={css.error} />
           </div>
@@ -59,6 +60,7 @@ export const LogInForm = () => {
               name="password"
               id={idPassword}
               className={css.input}
+              placeholder="Enter password"
             />
             <ErrorMessage
               name="password"
