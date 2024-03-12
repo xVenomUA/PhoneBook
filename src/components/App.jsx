@@ -21,9 +21,6 @@ export const App = () => {
   }, [dispatch]);
   const isRefreshed = useSelector(selectIsRefreshing);
   const isLoading = useSelector(selectIsLoading);
-  console.log("====================================");
-  console.log(isLoading);
-  console.log("====================================");
   return (
     <>
       {isRefreshed ? (
