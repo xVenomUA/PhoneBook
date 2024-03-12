@@ -7,6 +7,7 @@ import css from "./LoginForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operation";
+import toast from "react-hot-toast";
 const initialValues = {
   email: "",
   password: "",
@@ -14,7 +15,7 @@ const initialValues = {
 
 const CheckShema = Yup.object().shape({
   email: Yup.string().email("Pls valid email").required("Required email"),
-  password: Yup.string().min(6, "Too short").max(50, "Too long"),
+  password: Yup.string().min(8, "Too short").max(50, "Too long"),
 });
 
 export const LogInForm = () => {
@@ -24,7 +25,13 @@ export const LogInForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(login(values));
+    dispatch(login(values))
+      .unwrap()
+      .then(() => {
+        toast.success("Welcome to your contacts!");
+      }).catch(() => {
+         toast.error("Incorrect password or email");
+      })
     actions.resetForm();
   };
 

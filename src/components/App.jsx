@@ -9,6 +9,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { refreshUser } from "../redux/auth/operation";
 import { selectIsRefreshing } from "../redux/auth/selector";
 import { selectIsLoading } from "../redux/contact/selector";
+import ReactAlarm from "./ReactAlarm/ReactAlarm";
 
 const HomePage = lazy(() => import("../pages/Home/Home"));
 const RegisterPage = lazy(() => import("../pages/Register/Register"));
@@ -60,6 +61,7 @@ export const App = () => {
         </Suspense>
       )}
       {isLoading && <Loader />}
+      <ReactAlarm/>
     </>
   );
 };

@@ -7,6 +7,7 @@ import css from "./RegisterForm.module.css";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operation";
+import toast from "react-hot-toast";
 const initialValues = {
   name: "",
   email: "",
@@ -30,7 +31,13 @@ export const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(register(values));
+    dispatch(register(values)).unwrap()
+      .then(() => {
+        toast.success("Welcome to your contacts!");
+      })
+      .catch(() => {
+        toast.error("Incorrect password or email");
+      });
     actions.resetForm();
   };
 
